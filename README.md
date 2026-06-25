@@ -1,5 +1,5 @@
 # Sistema de Manipulação de Grafos em C
-#Descrição
+# Descrição
 
 Este projeto implementa um grafo não direcionado utilizando uma matriz de adjacência. O programa permite criar e manipular conexões entre vértices por meio de um menu interativo no terminal.
 
