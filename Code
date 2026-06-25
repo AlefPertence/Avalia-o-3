@@ -1,0 +1,186 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+#define MAX_VERTICES 100
+
+int graph[MAX_VERTICES][MAX_VERTICES];
+int num_vertices;
+
+//assinatura da função
+void limparGrafo(){
+    
+    for(int i =0; i<num_vertices; i++){
+        for(int j=0; j<num_vertices;j++){
+            
+            graph[i][j]=0;
+            
+        }
+    }
+    printf("\nGrafo Limpo com sucesso!\n");
+    
+}
+void imprimirMatriz(){
+    
+    printf("\n Matriz de adijacencia\n");
+    printf("");
+    
+    for(int i = 0; i<num_vertices;i++){
+        
+        printf("%2d",i);
+    }
+    
+    printf("\n");
+    
+    for(int i=0;i<num_vertices;i++){
+        
+        printf("%2d | ",i);
+        
+        for(int j=0;j<num_vertices;j++){
+            
+            printf("%d", graph[i+1][j]);
+        }
+        
+        printf("\n");
+        
+    }
+    
+}
+    //modifica o valor de uma aresta
+   void  modificarAresta(){
+       int origem,destino,valor;
+       
+       
+       printf("\n Vértice e origem: ");
+       scanf("%d", & origem);
+       
+       printf("\n Vértice e destino: ");
+       scanf("%d", & destino);
+       
+       if(origem<0 || origem>=num_vertices||
+        destino<0|| destino>=num_vertices){
+             
+             printf("\nVértices inválidos!\n");
+             return;
+        }
+        
+        
+        printf("1 - adicionar aresta\n");
+        printf("2 - remover aresta\n");
+        printf("opcao: ");
+        scanf("%d", & valor);
+        
+        
+        
+        graph[origem][destino]=valor;
+        graph[destino][origem]=valor;
+       
+       
+   }
+    
+void calcularGraus(){
+    
+    int grau;
+    
+    printf("\n GRAU DOS VERTICES\n\n");
+    
+    for(int i=0;i<num_vertices;i++){
+        
+        grau=0;
+        
+        for(int j=0;j<num_vertices;j++){
+            
+            grau += graph[i][j];
+        }
+        printf("vertice %d -> grau %d\n",i,grau);
+    }
+    
+}
+    
+    
+    
+    
+void listarAdjacencias(){
+    
+    printf("\nLISTA DE ADJACENCIAS\n");
+    
+    int vazio=1;
+    
+    for(int i=0; i<num_vertices;i++){
+        
+        printf("%d ->",i);
+        for(int j=0;j<num_vertices;j++){
+            
+            if(graph[i][j]=1){
+                
+                printf("%d",j);
+                vazio=0;
+            }
+            
+            if(vazio == 1){
+                
+                printf("nenhum");
+            }
+            printf("\n");
+            
+        }
+    }
+    
+}
+    
+    
+    
+int main() {
+    
+    int opcao;
+    
+    printf("Quantidade de vertices: ");
+    scanf("%d", &num_vertices);
+    
+    if(num_vertices<=0 || num_vertices>MAX_VERTICES){
+        
+        printf("Quantidade invalida\n");
+        
+    }
+    
+
+
+limparGrafo();
+
+do{
+    printf("====MENU DO GRAFO===\n");
+    printf("1 - limpar grafo\n 2- inserir/remover aresta\n3-mostrar matriz\n4 - mostrar graus\n 5 - mostrar adjacencias\n6 - sair\n");
+    printf("opcao: ");
+    scanf("%d", & opcao);
+    
+    
+    switch(opcao){
+        
+        case 1: 
+        limparGrafo();
+        break;
+        case 2:
+        modificarAresta();
+        break;
+        case 3: 
+        imprimirMatriz();
+        break;
+        case 4: 
+        calcularGraus();
+        break;
+        case 5:
+        listarAdjacencias();
+        break;
+        case 6:
+        printf("\n Programa encerrado !\n");
+        break;
+        default:
+        printf("Opcao invalida!\n");
+        
+        }
+}while(opcao!=6);
+
+}
+
+
+
+
